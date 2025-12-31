@@ -173,7 +173,7 @@ export default function InfoGrafisView({ stats }: { stats: any[] }) {
           
           <div className="relative h-100 rounded-2xl overflow-hidden shadow-2xl group">
              <Image 
-               src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=2070" 
+               src="images/ilustrasi2.jpg" 
                alt="Warga Desa" 
                fill 
                className="object-cover transition duration-700 group-hover:scale-110"

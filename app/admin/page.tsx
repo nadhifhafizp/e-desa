@@ -10,12 +10,12 @@ export const revalidate = 0;
 
 export default async function AdminDashboard() {
   
-  // Fetch Ringkasan Data secara Paralel
+  // Fetch Ringkasan Data secara Paralel dengan penanganan hasil yang lebih aman
   const [
-    { count: suratPending },
-    { count: totalBerita },
-    { count: totalUmkm },
-    { data: penduduk }
+    resSurat,
+    resBerita,
+    resUmkm,
+    resPenduduk
   ] = await Promise.all([
     supabase.from('letter_requests').select('*', { count: 'exact', head: true }).eq('status', 'Pending'),
     supabase.from('news').select('*', { count: 'exact', head: true }),
@@ -23,10 +23,16 @@ export default async function AdminDashboard() {
     supabase.from('demographic_stats').select('*')
   ]);
 
+  // Ambil nilai count/data dengan fallback aman (mencegah error null/undefined)
+  const suratPending = resSurat.count || 0;
+  const totalBerita = resBerita.count || 0;
+  const totalUmkm = resUmkm.count || 0;
+  const pendudukData = resPenduduk.data || [];
+
   // Hitung total penduduk dari data statistik
-  const totalPenduduk = penduduk
-    ?.filter(p => p.category === 'gender')
-    .reduce((acc, curr) => acc + curr.value, 0) || 0;
+  const totalPenduduk = pendudukData
+    .filter((p: any) => p.category === 'gender')
+    .reduce((acc: number, curr: any) => acc + (curr.value || 0), 0);
 
   return (
     <div className="p-8">
@@ -42,16 +48,16 @@ export default async function AdminDashboard() {
         
         {/* Card Surat (Pending) */}
         <Link href="/admin/layanan" className="group">
-           <div className={`p-6 rounded-2xl border transition shadow-sm hover:shadow-md ${suratPending && suratPending > 0 ? 'bg-red-50 border-red-200' : 'bg-white border-slate-200'}`}>
+           <div className={`p-6 rounded-2xl border transition shadow-sm hover:shadow-md ${suratPending > 0 ? 'bg-red-50 border-red-200' : 'bg-white border-slate-200'}`}>
               <div className="flex justify-between items-start mb-4">
-                 <div className={`p-3 rounded-xl ${suratPending && suratPending > 0 ? 'bg-red-100 text-red-600' : 'bg-green-50 text-green-600'}`}>
-                    {suratPending && suratPending > 0 ? <BellRing size={24} className="animate-pulse"/> : <CheckCircle size={24}/>}
+                 <div className={`p-3 rounded-xl ${suratPending > 0 ? 'bg-red-100 text-red-600' : 'bg-green-50 text-green-600'}`}>
+                    {suratPending > 0 ? <BellRing size={24} className="animate-pulse"/> : <CheckCircle size={24}/>}
                  </div>
                  <span className="text-xs font-bold bg-white/50 px-2 py-1 rounded-lg">Layanan</span>
               </div>
-              <h3 className="text-4xl font-bold text-slate-800 mb-1">{suratPending || 0}</h3>
-              <p className={`text-sm font-medium ${suratPending && suratPending > 0 ? 'text-red-600' : 'text-slate-500'}`}>
-                {suratPending && suratPending > 0 ? 'Perlu Diproses!' : 'Semua Beres'}
+              <h3 className="text-4xl font-bold text-slate-800 mb-1">{suratPending}</h3>
+              <p className={`text-sm font-medium ${suratPending > 0 ? 'text-red-600' : 'text-slate-500'}`}>
+                {suratPending > 0 ? 'Perlu Diproses!' : 'Semua Beres'}
               </p>
            </div>
         </Link>
@@ -79,7 +85,7 @@ export default async function AdminDashboard() {
                  </div>
                  <span className="text-xs font-bold bg-slate-100 text-slate-500 px-2 py-1 rounded-lg">Artikel</span>
               </div>
-              <h3 className="text-4xl font-bold text-slate-800 mb-1">{totalBerita || 0}</h3>
+              <h3 className="text-4xl font-bold text-slate-800 mb-1">{totalBerita}</h3>
               <p className="text-sm text-slate-500">Berita Terpublikasi</p>
            </div>
         </Link>
@@ -93,7 +99,7 @@ export default async function AdminDashboard() {
                  </div>
                  <span className="text-xs font-bold bg-slate-100 text-slate-500 px-2 py-1 rounded-lg">Pasar</span>
               </div>
-              <h3 className="text-4xl font-bold text-slate-800 mb-1">{totalUmkm || 0}</h3>
+              <h3 className="text-4xl font-bold text-slate-800 mb-1">{totalUmkm}</h3>
               <p className="text-sm text-slate-500">Produk UMKM</p>
            </div>
         </Link>
@@ -102,7 +108,8 @@ export default async function AdminDashboard() {
 
       {/* Quick Actions */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-         <div className="bg-linear-to-br from-green-800 to-green-900 rounded-3xl p-8 text-white relative overflow-hidden">
+         {/* PERBAIKAN DI SINI: bg-gradient-to-br */}
+         <div className="bg-gradient-to-br from-green-800 to-green-900 rounded-3xl p-8 text-white relative overflow-hidden">
             <div className="relative z-10">
                <h3 className="text-2xl font-bold mb-2">Tulis Berita Baru?</h3>
                <p className="text-green-200 mb-6 max-w-xs">Bagikan informasi kegiatan atau pengumuman terbaru kepada warga.</p>

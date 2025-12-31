@@ -37,7 +37,7 @@ export default function ProfilPage() {
               {/* Kolom Gambar */}
               <div className="relative h-64 lg:h-auto min-h-100">
                 <Image 
-                  src="https://images.unsplash.com/photo-1625246333195-5842b4674af5?q=80&w=2070" 
+                  src="/images/ilustrasi.png" 
                   alt="Suasana Desa Sukalaksana" 
                   fill 
                   className="object-cover"
@@ -77,8 +77,8 @@ export default function ProfilPage() {
 
                 <div className="mt-8 pt-8 border-t border-slate-100">
                   <div className="flex items-center gap-4">
-                     <div className="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center font-bold text-green-700">
-                        KD
+                     <div className="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center font-bold text-green-700 relative">
+                        <Image src="/images/kades.jpg" alt="Kepala Desa" fill className="w-10 h-10 rounded-full object-cover" />
                      </div>
                      <div>
                         <p className="text-sm text-slate-500">Kepala Desa Saat Ini</p>
@@ -185,7 +185,7 @@ export default function ProfilPage() {
           <FadeIn>
             <div className="group relative h-80 rounded-2xl overflow-hidden shadow-lg">
               <Image 
-                src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1974" // Ganti foto Pak Kades
+                src="/images/kades.jpg" // Ganti foto Pak Kades
                 alt="Kepala Desa"
                 fill
                 className="object-cover transition duration-500 group-hover:scale-110"

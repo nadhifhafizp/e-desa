@@ -86,12 +86,12 @@ export default async function Home() {
                 <span className="text-green-600 font-bold tracking-wider uppercase text-sm mb-2 block">Sambutan Kepala Desa</span>
                 <h2 className="text-4xl font-bold text-slate-800 mb-6">{sambutan?.title || 'Menuju Desa Mandiri'}</h2>
                 <div className="prose prose-lg text-slate-600 mb-6">
-                  <p>{sambutan?.content || 'Assalamualaikum Wr. Wb. Selamat datang di website resmi desa kami...'}</p>
+                  <p>{sambutan?.content || 'Assalamu’alaikum Warahmatullahi Wabarakatuh, Puji syukur kita panjatkan ke hadirat Allah SWT atas segala limpahan rahmat-Nya. Selamat datang di Website Resmi Desa Sukalaksana. Di era digital ini, Pemerintah Desa Sukalaksana berkomitmen untuk terus berinovasi demi meningkatkan kualitas pelayanan publik dan transparansi pemerintahan. Melalui website ini, kami menghadirkan layanan administrasi mandiri, informasi pembangunan, serta wadah bagi UMKM desa untuk berkembang. Kami berharap website ini dapat menjadi jembatan informasi yang efektif antara pemerintah desa dan masyarakat. Mari kita bersama-sama membangun Desa Sukalaksana yang lebih maju, mandiri, dan sejahtera. Wassalamu’alaikum Warahmatullahi Wabarakatuh.'}</p>
                 </div>
                 <div className="flex items-center gap-4">
                   <div>
                     <p className="font-bold text-slate-900 text-lg">Bapak Kepala Desa</p>
-                    <p className="text-slate-500 text-sm">Kepala Desa Periode 2024-2029</p>
+                    <p className="text-slate-500 text-sm">Kepala Desa Periode 2021-2029</p>
                   </div>
                   {/* Tanda tangan (opsional) */}
                 </div>

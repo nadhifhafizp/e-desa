@@ -5,24 +5,20 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabase';
 import { 
-  LayoutDashboard, 
-  Newspaper, 
-  ShoppingBag, 
-  Users, 
-  FileText, 
-  LogOut, 
-  Menu,
-  X 
+  LayoutDashboard, Newspaper, ShoppingBag, 
+  Users, FileText, LogOut, Menu, X 
 } from 'lucide-react';
 import clsx from 'clsx';
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const pathname = usePathname();
-  const [sidebarOpen, setSidebarOpen] = useState(true); // Untuk mobile toggle
+  
+  // DEFAULT: FALSE (Tertutup) agar aman di Mobile
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  // Cek sesi saat halaman dimuat
+  // Cek sesi login
   useEffect(() => {
     const checkSession = async () => {
       const { data: { session } } = await supabase.auth.getSession();
@@ -33,6 +29,11 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     };
     checkSession();
   }, [router]);
+
+  // Tutup sidebar otomatis saat pindah halaman (UX Mobile)
+  useEffect(() => {
+    setSidebarOpen(false);
+  }, [pathname]);
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
@@ -47,18 +48,35 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     { name: 'Layanan Surat', href: '/admin/layanan', icon: FileText },
   ];
 
-  if (loading) return null; // Atau tampilkan loading spinner full screen
+  if (loading) return null;
 
   return (
-    <div className="min-h-screen bg-slate-100 flex">
+    <div className="min-h-screen bg-slate-100 flex relative">
       
-      {/* SIDEBAR */}
+      {/* 1. MOBILE OVERLAY (Black Background) */}
+      {/* Muncul hanya di mobile saat sidebar terbuka */}
+      <div 
+        onClick={() => setSidebarOpen(false)}
+        className={clsx(
+          "fixed inset-0 bg-black/50 z-40 transition-opacity duration-300 md:hidden",
+          sidebarOpen ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"
+        )}
+      />
+
+      {/* 2. SIDEBAR */}
       <aside className={clsx(
-        "fixed inset-y-0 left-0 z-50 w-64 bg-slate-900 text-white transition-transform duration-300 ease-in-out md:translate-x-0 md:static",
+        "fixed inset-y-0 left-0 z-50 w-64 bg-slate-900 text-white transition-transform duration-300 ease-in-out md:translate-x-0 md:static shadow-xl",
         sidebarOpen ? "translate-x-0" : "-translate-x-full"
       )}>
-        <div className="h-16 flex items-center justify-center border-b border-slate-700">
+        <div className="h-16 flex items-center justify-between px-6 border-b border-slate-700">
           <span className="text-xl font-bold text-green-400">Admin Panel</span>
+          {/* Tombol Close Sidebar (Hanya di Mobile) */}
+          <button 
+            onClick={() => setSidebarOpen(false)} 
+            className="md:hidden text-slate-400 hover:text-white"
+          >
+            <X size={24} />
+          </button>
         </div>
         
         <nav className="p-4 space-y-2">
@@ -91,14 +109,17 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         </nav>
       </aside>
 
-      {/* MAIN CONTENT */}
+      {/* 3. MAIN CONTENT */}
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
         
-        {/* Header Mobile (Hanya muncul di HP) */}
-        <header className="md:hidden bg-white border-b p-4 flex items-center justify-between">
+        {/* Header Mobile */}
+        <header className="md:hidden bg-white border-b p-4 flex items-center justify-between sticky top-0 z-30 shadow-sm">
             <span className="font-bold text-slate-700">Menu Admin</span>
-            <button onClick={() => setSidebarOpen(!sidebarOpen)} className="p-2 bg-slate-100 rounded">
-                {sidebarOpen ? <X size={20}/> : <Menu size={20}/>}
+            <button 
+              onClick={() => setSidebarOpen(true)} // Buka Sidebar
+              className="p-2 bg-slate-100 rounded hover:bg-slate-200 text-slate-700"
+            >
+                <Menu size={24}/>
             </button>
         </header>
 
