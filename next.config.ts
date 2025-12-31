@@ -1,11 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // @ts-ignore
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-
+  // Hapus blok eslint dari sini
+  
   images: {
     unoptimized: true, 
     remotePatterns: [
