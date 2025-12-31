@@ -193,7 +193,7 @@ export default function ProfilPage() {
               <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent"></div>
               <div className="absolute bottom-0 left-0 w-full p-6 text-white">
                 <p className="bg-green-600 text-xs font-bold px-2 py-1 rounded w-fit mb-2">KEPALA DESA</p>
-                <h3 className="text-xl font-bold">H. Tamingn</h3>
+                <h3 className="text-xl font-bold">H. Tamin Komarudin</h3>
                 <p className="text-slate-300 text-sm">Periode 2018-2024</p>
               </div>
             </div>
