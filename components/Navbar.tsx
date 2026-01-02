@@ -81,7 +81,8 @@ export default function Navbar() {
             (!isScrolled && !isOpen) ? "drop-shadow-[0_2px_4px_rgba(255,255,255,0.3)]" : ""
           )}>
              <Image 
-               src={LOGO_URL} 
+               src="/images/logo.png
+               " 
                alt="Logo Desa"
                fill
                className="object-contain"
