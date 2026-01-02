@@ -130,7 +130,7 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
             required
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-green-500 outline-none transition"
+            className="w-full px-4 py-2 rounded-lg border text-emerald-900 border-slate-300 focus:ring-2 focus:ring-green-500 outline-none transition"
           />
         </div>
 
@@ -145,7 +145,7 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
                         required
                         value={price}
                         onChange={(e) => setPrice(e.target.value)}
-                        className="w-full pl-10 pr-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-green-500 outline-none transition"
+                        className="w-full pl-10 pr-4 py-2 rounded-lg border text-emerald-900 border-slate-300 focus:ring-2 focus:ring-green-500 outline-none transition"
                     />
                 </div>
             </div>
@@ -159,7 +159,7 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
                         required
                         value={contactNumber}
                         onChange={(e) => setContactNumber(e.target.value)}
-                        className="w-full pl-10 pr-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-green-500 outline-none transition"
+                        className="w-full pl-10 pr-4 py-2 rounded-lg border text-emerald-900 border-slate-300 focus:ring-2 focus:ring-green-500 outline-none transition"
                     />
                 </div>
             </div>
@@ -171,13 +171,14 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
             <select 
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
-                className="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-green-500 outline-none bg-white transition"
+                className="w-full px-4 py-2 rounded-lg border text-emerald-900 border-slate-300 focus:ring-2 focus:ring-green-500 outline-none bg-white transition"
             >
                 <option value="Makanan">Makanan & Minuman</option>
                 <option value="Kerajinan">Kerajinan Tangan</option>
                 <option value="Fashion">Fashion & Kain</option>
                 <option value="Jasa">Jasa</option>
                 <option value="Pertanian">Hasil Tani</option>
+                <option value="Lainnya">Lainnya</option>
             </select>
         </div>
 
@@ -221,7 +222,7 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
             rows={5}
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-green-500 outline-none transition"
+            className="w-full px-4 py-3 rounded-lg border text-emerald-900 border-slate-300 focus:ring-2 focus:ring-green-500 outline-none transition"
           />
         </div>
 
