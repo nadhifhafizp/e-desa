@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { Menu, X } from 'lucide-react'; // Import icon X
+import { Menu, X } from 'lucide-react';
 import clsx from 'clsx';
 
 // Ganti dengan URL logo Anda
@@ -13,17 +13,14 @@ const LOGO_URL = 'https://via.placeholder.com/100x100.png?text=LOGO';
 export default function Navbar() {
   const pathname = usePathname();
   
-  // State untuk Mobile Menu
+  // 1. DEFINISIKAN SEMUA STATE/HOOKS DI ATAS (JANGAN ADA RETURN DI SINI)
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const lastScrollY = useRef(0);
 
-  // Sembunyikan navbar di login/admin
-  if (pathname === '/login' || pathname.startsWith('/admin')) {
-    return null;
-  }
-
+  // 2. JALANKAN SEMUA USE EFFECT
+  
   // Tutup menu mobile saat pindah halaman
   useEffect(() => {
     setIsOpen(false);
@@ -38,7 +35,7 @@ export default function Navbar() {
       // Sembunyikan navbar jika scroll ke bawah, tampilkan jika naik
       if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
         setIsVisible(false);
-        setIsOpen(false); // Tutup menu mobile jika user scroll ke bawah
+        setIsOpen(false); 
       } else {
         setIsVisible(true);
       }
@@ -49,6 +46,14 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // 3. BARU LAKUKAN PENGECEKAN HALAMAN DI SINI
+  // Jika di halaman login atau admin, jangan tampilkan apa-apa (return null)
+  // TAPI Hooks di atas sudah tereksekusi, jadi React tidak error.
+  if (pathname === '/login' || pathname.startsWith('/admin')) {
+    return null;
+  }
+
+  // 4. RENDER TAMPILAN
   const navLinks = [
     { name: 'Beranda', href: '/' },
     { name: 'Profil', href: '/profil' },
@@ -76,7 +81,7 @@ export default function Navbar() {
             (!isScrolled && !isOpen) ? "drop-shadow-[0_2px_4px_rgba(255,255,255,0.3)]" : ""
           )}>
              <Image 
-               src="/images/logo.png" 
+               src={LOGO_URL} 
                alt="Logo Desa"
                fill
                className="object-contain"
@@ -126,7 +131,7 @@ export default function Navbar() {
 
       </div>
 
-      {/* MOBILE MENU DROPDOWN (BARU) */}
+      {/* MOBILE MENU DROPDOWN */}
       <div className={clsx(
         "absolute top-0 left-0 w-full bg-white border-b border-slate-200 shadow-xl transition-all duration-300 ease-in-out md:hidden overflow-hidden",
         isOpen ? "max-h-screen opacity-100 pt-20 pb-6" : "max-h-0 opacity-0 pt-0 pb-0"
@@ -138,7 +143,7 @@ export default function Navbar() {
               <Link
                 key={item.name}
                 href={item.href}
-                onClick={() => setIsOpen(false)} // Tutup menu saat diklik
+                onClick={() => setIsOpen(false)}
                 className={clsx(
                   "px-4 py-3 rounded-xl font-medium transition flex items-center justify-between",
                   isActive 
@@ -150,7 +155,6 @@ export default function Navbar() {
               </Link>
             );
           })}
-          {/* Tombol Login Mobile (Opsional) */}
           <Link 
             href="/login"
             className="mt-4 px-4 py-3 rounded-xl bg-slate-900 text-white font-bold text-center"
