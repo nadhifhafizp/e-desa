@@ -6,14 +6,55 @@ import {
 import FadeIn from '@/components/FadeIn';
 
 export default function ProfilPage() {
+  
+  // --- DATA PERANGKAT DESA (SELAIN KADES) ---
+  const staffLainnya = [
+    { 
+      nama: 'Dian Indriani', 
+      jabatan: 'Sekretaris Desa',
+      // Pastikan ada tanda '/' di depan agar terbaca dari folder public
+      foto: '/images/dianindriani.png' 
+    },
+    { 
+      nama: 'Pratiwi Fajriah Jahroh', 
+      jabatan: 'Kaur Keuangan',
+      foto: '/images/pratiwi.png'
+    },
+    { 
+      nama: 'Edi Supriyadi', 
+      jabatan: 'Kaur Perencanaan',
+      foto: '/images/edi.png'
+    },
+    { 
+      nama: 'Asmat', 
+      jabatan: 'Kaur Umum',
+      foto: '/images/asmat.png'
+    },
+    { 
+      nama: 'Acep Sutopo', 
+      jabatan: 'Kasi Pemerintahan',
+      foto: '/images/acep.png'
+    },
+    { 
+      nama: 'Unang', 
+      jabatan: 'Kasi Pelayanan',
+      foto: '/images/unang.png'
+    },
+    { 
+      nama: 'Roan Bahrudin', 
+      jabatan: 'Kasi Kesra',
+      foto: '/images/roan.png'
+    },
+  ];
+  // -------------------------------------------
+
+
   return (
     <main className="min-h-screen bg-slate-50 pb-20">
       
-      {/* 1. HERO SECTION (Konsisten dengan Info Grafis & Layanan) */}
+      {/* 1. HERO SECTION */}
       <section className="bg-green-900 text-white pt-32 pb-24 px-4 relative overflow-hidden">
-        {/* Pattern Background */}
         <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] animate-pulse"></div>
-        
         <div className="container mx-auto text-center relative z-10">
           <FadeIn>
             <span className="inline-block py-1 px-3 rounded-full bg-green-800 text-green-200 text-sm font-semibold mb-4 border border-green-700">
@@ -28,13 +69,11 @@ export default function ProfilPage() {
         </div>
       </section>
 
-      {/* 2. SEJARAH DESA (Text Heavy & Informatif) */}
+      {/* 2. SEJARAH DESA */}
       <section className="container mx-auto px-4 -mt-16 relative z-20 mb-20">
         <FadeIn delay={0.2}>
           <div className="bg-white rounded-3xl shadow-xl overflow-hidden">
             <div className="grid grid-cols-1 lg:grid-cols-2">
-              
-              {/* Kolom Gambar */}
               <div className="relative h-64 lg:h-auto min-h-100">
                 <Image 
                   src="/images/ilustrasi.png" 
@@ -43,20 +82,16 @@ export default function ProfilPage() {
                   className="object-cover"
                 />
                 <div className="absolute inset-0 bg-green-900/20"></div>
-                
-                {/* Badge Tahun Berdiri (Contoh) */}
                 <div className="absolute bottom-8 left-8 bg-white/90 backdrop-blur p-4 rounded-xl shadow-lg max-w-50">
                    <p className="text-xs text-slate-500 uppercase font-bold tracking-wider">Tahun Berdiri</p>
                    <p className="text-3xl font-bold text-green-800">1985</p>
                 </div>
               </div>
 
-              {/* Kolom Teks Sejarah */}
               <div className="p-8 md:p-12 flex flex-col justify-center">
                 <h2 className="text-3xl font-bold text-slate-800 mb-6 flex items-center gap-3">
                   <Calendar className="text-green-600" /> Sejarah Desa
                 </h2>
-                
                 <div className="prose prose-slate text-slate-600 leading-relaxed space-y-4">
                   <p>
                     Desa Sukalaksana merupakan salah satu desa yang berada di wilayah Kecamatan Sukakarya, Kabupaten Bekasi. 
@@ -74,11 +109,10 @@ export default function ProfilPage() {
                     transparan, akuntabel, dan partisipatif, sesuai dengan semangat otonomi desa.
                   </p>
                 </div>
-
                 <div className="mt-8 pt-8 border-t border-slate-100">
                   <div className="flex items-center gap-4">
-                     <div className="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center font-bold text-green-700 relative">
-                        <Image src="/images/kades.jpg" alt="Kepala Desa" fill className="w-10 h-10 rounded-full object-cover" />
+                     <div className="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center font-bold text-green-700 relative overflow-hidden">
+                        <Image src="/images/kades.jpg" alt="Kepala Desa" fill className="object-cover" />
                      </div>
                      <div>
                         <p className="text-sm text-slate-500">Kepala Desa Saat Ini</p>
@@ -87,17 +121,14 @@ export default function ProfilPage() {
                   </div>
                 </div>
               </div>
-
             </div>
           </div>
         </FadeIn>
       </section>
 
-      {/* 3. VISI & MISI (Styling Modern) */}
+      {/* 3. VISI & MISI */}
       <section className="container mx-auto px-4 mb-20">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-           
-           {/* Kartu Visi */}
            <FadeIn delay={0.3} className="md:col-span-1">
              <div className="bg-green-800 text-white p-8 rounded-3xl h-full flex flex-col justify-center relative overflow-hidden">
                <div className="absolute top-0 right-0 p-8 opacity-10">
@@ -113,7 +144,6 @@ export default function ProfilPage() {
              </div>
            </FadeIn>
 
-           {/* Kartu Misi */}
            <FadeIn delay={0.4} className="md:col-span-2">
              <div className="bg-white p-8 rounded-3xl border border-slate-200 h-full shadow-sm">
                <div className="flex items-center gap-3 mb-6">
@@ -122,7 +152,6 @@ export default function ProfilPage() {
                  </div>
                  <h3 className="text-2xl font-bold text-slate-800">Misi Pembangunan</h3>
                </div>
-               
                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                  {[
                    "Mewujudkan pemerintahan desa yang jujur, transparan, dan berwibawa.",
@@ -140,24 +169,22 @@ export default function ProfilPage() {
                </div>
              </div>
            </FadeIn>
-
         </div>
       </section>
 
-      {/* 4. FAKTA GEOGRAFIS (Data dari PDF) */}
+      {/* 4. FAKTA GEOGRAFIS */}
       <section className="bg-slate-100 py-20 mb-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
              <h2 className="text-3xl font-bold text-slate-800">Gambaran Umum Wilayah</h2>
              <p className="text-slate-500 mt-2">Data geografis berdasarkan statistik kecamatan terbaru.</p>
           </div>
-
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
              {[
                { label: 'Luas Wilayah', value: '7,01 km²', icon: MapPin },
                { label: 'Jarak ke Kecamatan', value: '3 km', icon: ArrowRight },
                { label: 'Jarak ke Kabupaten', value: '25 km', icon: ArrowRight },
-               { label: 'Status Wilayah', value: 'Bukan Tepi Laut', icon: MapPin }, // Dari PDF hal 31
+               { label: 'Status Wilayah', value: 'Bukan Tepi Laut', icon: MapPin },
              ].map((item, idx) => (
                <FadeIn key={idx} delay={idx * 0.1}>
                  <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 text-center">
@@ -173,50 +200,56 @@ export default function ProfilPage() {
         </div>
       </section>
 
-      {/* 5. STRUKTUR ORGANISASI */}
+      {/* 5. STRUKTUR ORGANISASI (UPDATED STYLE) */}
       <section className="container mx-auto px-4 mb-10">
         <div className="flex items-center justify-between mb-8">
            <h2 className="text-3xl font-bold text-slate-800">Perangkat Desa</h2>
-           <a href="#" className="text-green-600 font-semibold hover:underline">Lihat Bagan Lengkap</a>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {/* Card Kepala Desa (Spesial) */}
+          
+          {/* 1. Card Kepala Desa */}
           <FadeIn>
-            <div className="group relative h-80 rounded-2xl overflow-hidden shadow-lg">
+            <div className="group relative h-96 rounded-2xl overflow-hidden shadow-lg bg-slate-100">
               <Image 
-                src="/images/kades.jpg" // Ganti foto Pak Kades
-                alt="Kepala Desa"
+                src="/images/kades.jpg" 
+                alt="H. Tamin Komarudin"
                 fill
-                className="object-cover transition duration-500 group-hover:scale-110"
+                className="object-cover transition duration-500 group-hover:scale-105"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
               />
-              <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent"></div>
+              <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/30 to-transparent"></div>
               <div className="absolute bottom-0 left-0 w-full p-6 text-white">
-                <p className="bg-green-600 text-xs font-bold px-2 py-1 rounded w-fit mb-2">KEPALA DESA</p>
+                <p className="bg-green-600 backdrop-blur-sm text-xs font-bold px-2 py-1 rounded w-fit mb-2">KEPALA DESA</p>
                 <h3 className="text-xl font-bold">H. Tamin Komarudin</h3>
-                <p className="text-slate-300 text-sm">Periode 2018-2024</p>
+                <p className="text-slate-300 text-sm mt-1">Periode 2018-2024</p>
               </div>
             </div>
           </FadeIn>
 
-          {/* Card Perangkat Lainnya (Looping) */}
-          {[
-            { nama: 'Budi Santoso', jabatan: 'Sekretaris Desa' },
-            { nama: 'Siti Aminah', jabatan: 'Kaur Keuangan' },
-            { nama: 'Ahmad Rizki', jabatan: 'Kaur Perencanaan' },
-          ].map((staff, idx) => (
+          {/* 2. Card Perangkat Lainnya (Style Disamakan) */}
+          {staffLainnya.map((staff, idx) => (
              <FadeIn key={idx} delay={(idx+1) * 0.1}>
-                <div className="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm hover:shadow-md transition text-center h-full flex flex-col items-center justify-center">
-                   <div className="w-24 h-24 rounded-full bg-slate-200 mb-4 overflow-hidden relative">
-                      <Image 
-                        src={`https://ui-avatars.com/api/?name=${staff.nama}&background=random`} 
-                        alt={staff.nama}
-                        fill
-                        className="object-cover"
-                      />
+                <div className="group relative h-96 rounded-2xl overflow-hidden shadow-lg bg-slate-100">
+                   <Image 
+                     src={staff.foto} 
+                     alt={staff.nama}
+                     fill
+                     className="object-cover transition duration-500 group-hover:scale-105"
+                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                   />
+                   
+                   {/* Gradient Overlay */}
+                   <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/30 to-transparent"></div>
+                   
+                   {/* Text Content */}
+                   <div className="absolute bottom-0 left-0 w-full p-6 text-white">
+                     {/* Badge Jabatan */}
+                     <p className="bg-green-600/90 backdrop-blur-sm text-xs font-bold px-2 py-1 rounded w-fit mb-2 uppercase">
+                        {staff.jabatan}
+                     </p>
+                     <h3 className="text-xl font-bold leading-tight">{staff.nama}</h3>
                    </div>
-                   <h4 className="font-bold text-slate-800">{staff.nama}</h4>
-                   <p className="text-sm text-green-600 font-medium">{staff.jabatan}</p>
                 </div>
              </FadeIn>
           ))}
