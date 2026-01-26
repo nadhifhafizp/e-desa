@@ -4,14 +4,14 @@ import "./globals.css";
 import Navbar from "@/components/Navbar"; // Pastikan path ini benar
 
 const inter = Inter({ subsets: ["latin"] });
+
 export const metadata = {
-  title: 'Desa Sukalaksana Bekasi', // Sesuaikan dengan judulmu
+  title: 'Desa Sukalaksana Bekasi',
   description: 'Website resmi Desa Sukalaksana...',
-  // Tambahkan bagian ini:
   verification: {
-    google: 'PASTE_KODE_ACAK_DARI_GOOGLE_DI_SINI',
+    google: 'mamlGGnWoAvDXnS3wnBkvek6EYJWndzCPZT0d1n0bUc',
   },
-}
+} as Metadata;
 
 export default function RootLayout({
   children,
